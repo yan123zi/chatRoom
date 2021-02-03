@@ -1,5 +1,8 @@
 <template>
-$END$
+  <div>
+    <h1>fwefw</h1>
+    <nuxt/>
+  </div>
 </template>
 
 <script>

@@ -2,5 +2,9 @@
   "name": "chat-room",
   "scripts": {
     "dev": "nuxt"
+  },
+  "dependencies": {
+    "@nuxt/types": "^2.14.12",
+    "nuxt": "^2.14.12"
   }
 }
