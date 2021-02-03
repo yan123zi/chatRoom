@@ -1,0 +1,6 @@
+{
+  "name": "chat-room",
+  "scripts": {
+    "dev": "nuxt"
+  }
+}
