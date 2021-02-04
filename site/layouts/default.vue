@@ -1,13 +1,16 @@
 <template>
   <div>
-    <h1>fwefw</h1>
+    <my-nav/>
     <nuxt/>
   </div>
 </template>
 
 <script>
+import myNav from '~/components/myNav'
+
 export default {
-name: "default"
+  components: { myNav },
+
 }
 </script>
 

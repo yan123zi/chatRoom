@@ -5,6 +5,7 @@
   },
   "dependencies": {
     "@nuxt/types": "^2.14.12",
+    "element-ui": "^2.15.0",
     "nuxt": "^2.14.12"
   }
 }
