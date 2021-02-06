@@ -1,3 +1,5 @@
+const isProduction = process.env.NODE_ENV === 'production'
+const isDocker = process.env.NODE_ENV === 'docker'
 export default {
     server:{
         port: 8001,
@@ -16,5 +18,24 @@ export default {
     },
     plugins:[
         '~/plugins/element-ui'
-    ]
+    ],
+    modules:[
+        '@nuxtjs/axios'
+    ],
+    /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+    axios: {
+        proxy: true,
+        credentials: true,
+    },
+    proxy: {
+        '/api':'http://127.0.0.1:8002'
+        // '/api/': isProduction
+        //     ? 'https://mlog.club'
+        //     : isDocker
+        //         ? 'http://bbs-go-server:8082'
+        //         : 'http://127.0.0.1:8082',
+    },
 }

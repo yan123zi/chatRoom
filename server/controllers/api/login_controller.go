@@ -3,7 +3,6 @@ package api
 import (
 	"chatRoom/server/common"
 	"chatRoom/server/services"
-	"fmt"
 	"github.com/dchest/captcha"
 	"github.com/kataras/iris/v12"
 )
@@ -12,8 +11,7 @@ type LoginController struct {
 	Ctx iris.Context
 }
 
-func (c *LoginController) PostSignUp() *common.JsonResult {
-	fmt.Println("tothis iofwjfoiw")
+func (c *LoginController) PostSignup() *common.JsonResult {
 	var (
 		userName=c.Ctx.PostValueTrim("username")
 		passWord=c.Ctx.PostValueTrim("password")

@@ -33,6 +33,7 @@ import {
     Avatar,
     Divider,
     Card,
+    Image,
     Loading,
     MessageBox,
     Message,
@@ -70,3 +71,4 @@ Vue.use(Submenu)
 Vue.use(Avatar)
 Vue.use(Divider)
 Vue.use(Card)
+Vue.use(Image)

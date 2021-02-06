@@ -1,1 +1,2 @@
 port: 8002
+baseUrl: http://localhost:8002 # 网站域名

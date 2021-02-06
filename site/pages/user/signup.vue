@@ -13,9 +13,10 @@
         </el-form-item>
         <el-form-item label="验证码:">
           <el-input v-model="form.name"></el-input>
+          <img :src="form.url" style="width: 80px; height: 40px;position: absolute;margin-left: 20px" @click="showCaptcha"/>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
+          <el-button type="primary" @click="onSubmit">立即注册</el-button>
           <el-button>取消</el-button>
         </el-form-item>
       </el-form>
@@ -30,19 +31,22 @@ export default {
     return {
       form: {
         name: '',
-        region: '',
-        date1: '',
-        date2: '',
-        delivery: false,
-        type: [],
-        resource: '',
-        desc: ''
+        url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
       }
     }
+  },
+  mounted() {
+    this.showCaptcha()
   },
   methods: {
     onSubmit() {
       console.log('submit!');
+    },
+    async showCaptcha(){
+      const codeObj=await this.$axios.get("/api/captcha/request")
+      console.log(codeObj.data)
+      console.log(codeObj.data.data)
+      this.form.url=codeObj.data.data.captchaUrl
     }
   }
 }
@@ -59,7 +63,7 @@ export default {
   display: block;
   margin: 50px auto;
   width: 80%;
-  padding: auto;
+  padding-left: 25%;
 }
 
 .el-input {

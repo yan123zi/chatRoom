@@ -10,6 +10,7 @@ var AppConfig = &Config{}
 
 type Config struct {
 	Port string `json:"port" yaml:"port"`
+	BaseUrl string `json:"base_url" yaml:"baseUrl"`
 }
 
 func InitAppConfig(fileName string) (*Config,error) {

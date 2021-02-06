@@ -2,6 +2,7 @@ package api
 
 import (
 	"chatRoom/server/common"
+	"chatRoom/server/config"
 	"github.com/dchest/captcha"
 	"github.com/google/uuid"
 	"github.com/kataras/iris/v12"
@@ -16,7 +17,8 @@ type CaptchaController struct {
 func (c *CaptchaController) GetRequest() *common.JsonResult {
 	captchaId := captcha.NewLen(5)
 	uuid,_:=uuid.NewUUID()
-	captchaUrl := "/api/captcha/show?captchaId=" + captchaId+"&r="+strings.ReplaceAll(uuid.String(),"-","")
+	captchaUrl := config.AppConfig.BaseUrl+"/api/captcha/show?captchaId=" + captchaId+"&r="+strings.ReplaceAll(uuid.String(),"-","")
+	
 	return common.NewEmptyRespBuild().
 		Put("captchaId", captchaId).
 		Put("captchaUrl", captchaUrl).JsonResult()
