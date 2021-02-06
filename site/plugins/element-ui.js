@@ -32,6 +32,7 @@ import {
     MenuItem,
     Avatar,
     Divider,
+    Card,
     Loading,
     MessageBox,
     Message,
@@ -68,3 +69,4 @@ Vue.use(MenuItem)
 Vue.use(Submenu)
 Vue.use(Avatar)
 Vue.use(Divider)
+Vue.use(Card)
