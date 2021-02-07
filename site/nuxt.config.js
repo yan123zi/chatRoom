@@ -17,7 +17,8 @@ export default {
         ],
     },
     plugins:[
-        '~/plugins/element-ui'
+        '~/plugins/element-ui',
+        '~/plugins/axios'
     ],
     modules:[
         '@nuxtjs/axios'

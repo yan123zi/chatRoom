@@ -13,7 +13,7 @@ type LoginController struct {
 
 func (c *LoginController) PostSignup() *common.JsonResult {
 	var (
-		userName=c.Ctx.PostValueTrim("username")
+		userName=c.Ctx.PostValueTrim("nickname")
 		passWord=c.Ctx.PostValueTrim("password")
 		rePassword=c.Ctx.PostValueTrim("rePassword")
 		captchaId=c.Ctx.PostValueTrim("captchaId")

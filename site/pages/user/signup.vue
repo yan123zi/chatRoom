@@ -3,20 +3,21 @@
     <el-card class="card">
       <el-form ref="form" :model="form" label-width="80px" class="form">
         <el-form-item label="用户名:">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.nickname"></el-input>
         </el-form-item>
         <el-form-item label="密码:">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.password"></el-input>
         </el-form-item>
         <el-form-item label="重复密码:">
-          <el-input v-model="form.name"></el-input>
+          <el-input v-model="form.rePassword"></el-input>
         </el-form-item>
         <el-form-item label="验证码:">
-          <el-input v-model="form.name"></el-input>
-          <img :src="form.url" style="width: 80px; height: 40px;position: absolute;margin-left: 20px" @click="showCaptcha"/>
+          <el-input v-model="form.captchaCode"></el-input>
+          <img :src="form.captchaUrl" style="width: 80px; height: 40px;position: absolute;margin-left: 20px"
+               @click="showCaptcha"/>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即注册</el-button>
+          <el-button type="primary" @click="signUp">立即注册</el-button>
           <el-button>取消</el-button>
         </el-form-item>
       </el-form>
@@ -30,8 +31,12 @@ export default {
   data() {
     return {
       form: {
-        name: '',
-        url:'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        nickname: '',
+        password: '',
+        rePassword: '',
+        captchaId: '',
+        captchaUrl: '',
+        captchaCode: '',
       }
     }
   },
@@ -39,14 +44,27 @@ export default {
     this.showCaptcha()
   },
   methods: {
-    onSubmit() {
-      console.log('submit!');
+    async signUp() {
+      try {
+        await this.$store.dispatch('user/signup',{
+          nickname:this.form.nickname,
+          password:this.form.password,
+          rePassword:this.form.rePassword,
+          captchaId:this.form.captchaId,
+          captchaCode:this.form.captchaCode
+        })
+      }catch (e) {
+        this.$message.error(e.message||e)
+      }
     },
-    async showCaptcha(){
-      const codeObj=await this.$axios.get("/api/captcha/request")
-      console.log(codeObj.data)
-      console.log(codeObj.data.data)
-      this.form.url=codeObj.data.data.captchaUrl
+    async showCaptcha() {
+      try {
+        const codeObj = await this.$axios.get("/api/captcha/request")
+        this.form.captchaUrl = codeObj.captchaUrl
+        this.form.captchaId=codeObj.captchaId
+      }catch (e) {
+        this.$message.error(e.message||e)
+      }
     }
   }
 }
