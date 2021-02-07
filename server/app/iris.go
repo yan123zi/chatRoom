@@ -34,5 +34,5 @@ func InitIris() {
 		m.Party("/captcha").Handle(new(api.CaptchaController))
 	})
 
-	app.Listen(":"+config.AppConfig.Port)
+	app.Listen(":" + config.AppConfig.Port)
 }

@@ -16,9 +16,9 @@ type CaptchaController struct {
 
 func (c *CaptchaController) GetRequest() *common.JsonResult {
 	captchaId := captcha.NewLen(5)
-	uuid,_:=uuid.NewUUID()
-	captchaUrl := config.AppConfig.BaseUrl+"/api/captcha/show?captchaId=" + captchaId+"&r="+strings.ReplaceAll(uuid.String(),"-","")
-	
+	uuid, _ := uuid.NewUUID()
+	captchaUrl := config.AppConfig.BaseUrl + "/api/captcha/show?captchaId=" + captchaId + "&r=" + strings.ReplaceAll(uuid.String(), "-", "")
+
 	return common.NewEmptyRespBuild().
 		Put("captchaId", captchaId).
 		Put("captchaUrl", captchaUrl).JsonResult()

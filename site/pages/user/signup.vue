@@ -3,7 +3,7 @@
     <el-card class="card">
       <el-form ref="form" :model="form" label-width="80px" class="form">
         <el-form-item label="用户名:">
-          <el-input v-model="form.nickname"></el-input>
+          <el-input v-model="form.username"></el-input>
         </el-form-item>
         <el-form-item label="密码:">
           <el-input v-model="form.password"></el-input>
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       form: {
-        nickname: '',
+        username: '',
         password: '',
         rePassword: '',
         captchaId: '',
@@ -47,7 +47,7 @@ export default {
     async signUp() {
       try {
         await this.$store.dispatch('user/signup',{
-          nickname:this.form.nickname,
+          username:this.form.username,
           password:this.form.password,
           rePassword:this.form.rePassword,
           captchaId:this.form.captchaId,

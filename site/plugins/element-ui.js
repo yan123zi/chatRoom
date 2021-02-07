@@ -59,6 +59,7 @@ Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Tag)
 Vue.use(Alert)
+Vue.use(Alert)
 Vue.use(Row)
 Vue.use(Col)
 Vue.use(Upload)
@@ -72,3 +73,5 @@ Vue.use(Avatar)
 Vue.use(Divider)
 Vue.use(Card)
 Vue.use(Image)
+
+Vue.prototype.$message=Message

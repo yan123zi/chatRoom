@@ -65,7 +65,7 @@ type CodeErrMsg struct {
 	Data interface{} `json:"data"`
 }
 
-func NewError(code int,msg string) *CodeErrMsg {
+func NewError(code int, msg string) *CodeErrMsg {
 	return &CodeErrMsg{
 		Code: code,
 		Msg:  msg,
