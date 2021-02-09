@@ -2,6 +2,7 @@ package api
 
 import (
 	"chatRoom/server/common"
+	"chatRoom/server/middlewares"
 	"chatRoom/server/services"
 	"github.com/dchest/captcha"
 	"github.com/kataras/iris/v12"
@@ -26,5 +27,9 @@ func (c *LoginController) PostSignup() *common.JsonResult {
 	if err != nil {
 		return common.JsonErrorMsg(err.Error())
 	}
-	return common.NewEmptyRespBuild().Put("user", user).JsonResult()
+	token, err := middlewares.MakeToken(user)
+	if err != nil {
+		return common.JsonErrorMsg(err.Error())
+	}
+	return common.NewEmptyRespBuild().Put("user", user).Put("token", token).JsonResult()
 }

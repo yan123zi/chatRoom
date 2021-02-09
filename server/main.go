@@ -5,6 +5,7 @@ import (
 	"chatRoom/server/config"
 	"flag"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/sirupsen/logrus"
 )
 
@@ -17,12 +18,12 @@ func init() {
 		logrus.Errorf("init app err:%s", err.Error())
 		return
 	}
-	db,err:=gorm.Open(config.AppConfig.MysqlUrl)
+	db, err := gorm.Open("mysql",config.AppConfig.MysqlUrl)
 	if err != nil {
-		logrus.Errorf("init app db err:%s",err.Error())
+		logrus.Errorf("init app db err:%s", err.Error())
 		return
 	}
-	config.Db=db
+	config.Db = db
 }
 
 func main() {

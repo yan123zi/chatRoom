@@ -11,8 +11,8 @@ var AppConfig = &Config{}
 var Db *gorm.DB
 
 type Config struct {
-	Port    string `json:"port" yaml:"Port"`
-	BaseUrl string `json:"base_url" yaml:"BaseUrl"`
+	Port     string `json:"port" yaml:"Port"`
+	BaseUrl  string `json:"base_url" yaml:"BaseUrl"`
 	MysqlUrl string `json:"mysql_url" yaml:"MySqlUrl"`
 }
 

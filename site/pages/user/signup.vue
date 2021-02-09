@@ -46,13 +46,14 @@ export default {
   methods: {
     async signUp() {
       try {
-        await this.$store.dispatch('user/signup',{
+        const user=await this.$store.dispatch('user/signup',{
           username:this.form.username,
           password:this.form.password,
           rePassword:this.form.rePassword,
           captchaId:this.form.captchaId,
           captchaCode:this.form.captchaCode
         })
+        console.log(user)
       }catch (e) {
         this.$message.error(e.message||e)
       }

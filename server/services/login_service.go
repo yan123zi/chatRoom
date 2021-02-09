@@ -3,6 +3,7 @@ package services
 import (
 	"chatRoom/server/common/validate"
 	"chatRoom/server/model"
+	"chatRoom/server/repositories"
 	"errors"
 	"strings"
 )
@@ -29,17 +30,33 @@ func (s *loginService) SignUp(username, password, rePassword string) (*model.Use
 		return nil, err
 	}
 
-	if err := validate.IsUsername(username); err != nil {
+	if len(username) > 0 {
+		if err := validate.IsUsername(username); err != nil {
+			return nil, err
+		}
+		if s.existUserName(username) {
+			return nil, errors.New("该用户名已注册！")
+		}
+	}
+
+	user := &model.User{
+		Username:    username,
+		Password:    password,
+		Avatar:      "",
+		Description: "",
+	}
+
+	if err := repositories.UserRepository.Create(user); err != nil {
 		return nil, err
 	}
 
-	return nil, nil
+	return user, nil
 }
 
 func (s *loginService) existUserName(username string) bool {
-
+	return s.getUserByUserName(username) == nil
 }
 
-func (s *loginService) getUserByUserName() {
-
+func (s *loginService) getUserByUserName(username string) *model.User {
+	return repositories.UserRepository.FindOneByUserName(username)
 }
